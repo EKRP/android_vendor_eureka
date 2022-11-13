@@ -35,13 +35,26 @@ mkdir -p "$EK_WORK_DIR/META-INF/com/google/android"
   cat > "$EK_WORK_DIR/META-INF/com/google/android/updater-script" <<EOF
 show_progress(1.000000, 0);
 ui_print("             ");
-ui_print("Eureka Recovery Project                  ");
+ui_print(" ** Eureka Recovery Project **");
+ui_print("MWNNNNNNNNNNNNNNWMN;cWNNNNNMWc");
+ui_print("MO:::::::::::::dW0.xM0:::lXX'");
+ui_print("MO:::lOOOOOOOOKWd.0Wx:::dW0.");
+ui_print("MO:::dMkddddddd;;NNl:::kWx");
+ui_print("MO:::dMdccccc' oWKc::cKWl");
+ui_print("MO:::l0000KMK.OMO:::cXN;");
+ui_print("MO::::::::NX xMO::::XW'");
+ui_print("MO:::oXXXXXMK.kMk:::cKN;");
+ui_print("MO:::dMdccccc, lN0c:::OWo");
+ui_print("MO:::dM0OOOOOkkl,NNl:::dNO");
+ui_print("MO:::lkkkkkkkkKMk.OWd:::lXX'");
+ui_print("MO:::::::::::::xWX'dWO::::ONc");
+ui_print("MWNNNNNNNNNNNNNNWMW::NNNNNNWMx");
 ui_print("[DEVICE]: $EK_DEVICE");
 ui_print("[VERSION]: $EK_VERSION    ");
 delete_recursive("/sdcard/addons");
 package_extract_dir("addons", "/sdcard/addons");
 set_progress(0.500000);
-package_extract_file("recovery.img", "/dev/block/by-name/recovery");
+package_extract_file("ekrp.img", "/dev/block/by-name/recovery");
 set_progress(0.700000);
 ui_print("                                                  ");
 ui_print("Eureka Recovery Installer Completed!");
@@ -49,29 +62,48 @@ set_progress(1.000000);
 EOF
   cp -R "$EK_VENDOR/updater/update-binary" "$EK_WORK_DIR/META-INF/com/google/android/update-binary"
   cp "$RECOVERY_IMG" "$EK_WORK_DIR"
+  mv "$EK_WORK_DIR/recovery.img" "$EK_WORK_DIR/ekrp.img"
 
-echo -e "Create ZIP ..."
-echo -e ""
 cd $EK_WORK_DIR
-zip -r ${ZIP_NAME}.zip *
+rm -rf *.zip
+zip -qr ${ZIP_NAME}.zip *
 
-ZIPFILE=$(pwd)/$EK_OUT/$ZIP_NAME.zip
+ZIPFILE=$(pwd)$EK_OUT/$ZIP_NAME.zip
 ZIPFILE_SHA1=$(sha1sum -b $ZIPFILE)
 ZIPFILE_MD5=$(echo -n $ZIPFILE | md5sum | cut -d '-' -f1)
 
+# CLEANUP
+rm "$EK_WORK_DIR/ekrp.img"
+rm -rf "$EK_WORK_DIR/addons"
+rm -rf "$EK_WORK_DIR/META-INF"
+
 #Build Done Result..
 echo ""
-echo "Eureka Recovery Project"
-echo "======================="
+echo "MWNNNNNNNNNNNNNNWMN;cWNNNNNMWc"
+echo "MO:::::::::::::dW0.xM0:::lXX'"
+echo "MO:::lOOOOOOOOKWd.0Wx:::dW0."
+echo "MO:::dMkddddddd;;NNl:::kWx"
+echo "MO:::dMdccccc' oWKc::cKWl"
+echo "MO:::l0000KMK.OMO:::cXN;"
+echo "MO::::::::NX xMO::::XW'"
+echo "MO:::oXXXXXMK.kMk:::cKN;"
+echo "MO:::dMdccccc, lN0c:::OWo"
+echo "MO:::dM0OOOOOkkl,NNl:::dNO"
+echo "MO:::lkkkkkkkkKMk.OWd:::lXX'"
+echo "MO:::::::::::::xWX'dWO::::ONc"
+echo "MWNNNNNNNNNNNNNNWMW::NNNNNNWMx"
+echo ""
+echo "** Eureka Recovery Project **"
+echo "============================="
 echo "DEVICE: $EK_DEVICE"
 echo "VERSION: $EK_VERSION"
-echo "-----------------------"
+echo "-----------------------------"
 echo "File Info"
 echo "========="
 echo "ZIP: $ZIP_NAME.zip"
 echo "OUT: ${PWD##*/}/$ZIP_NAME.zip"
 echo "SIZE: $(getSize $ZIPFILE)"
-echo "-----------------------"
+echo "-----------------------------"
 echo "CHECKSUMS"
 echo "========="
 echo "SHA1: ${ZIPFILE_SHA1:0:40}"
