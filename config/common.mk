@@ -6,8 +6,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.disable_rescue=true
 
 # Additional packages
--include vendor/twrp/config/packages.mk
+-include vendor/eureka/config/packages.mk
 
 PRODUCT_EXTRA_RECOVERY_KEYS := \
-    vendor/twrp/build/target/product/security/lineage
+    vendor/eureka/build/target/product/security/lineage
 

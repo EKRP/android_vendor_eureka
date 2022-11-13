@@ -1,5 +1,5 @@
 # Bring in Qualcomm helper macros
-include vendor/twrp/build/core/qcom_utils.mk
+include vendor/eureka/build/core/qcom_utils.mk
 
 # Target-specific configuration
 ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
