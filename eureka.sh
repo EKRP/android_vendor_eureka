@@ -35,7 +35,7 @@ mkdir -p "$EK_WORK_DIR/META-INF/com/google/android"
 #create updater-script before packing ZIP..
   cat > "$EK_WORK_DIR/META-INF/com/google/android/updater-script" <<EOF
 show_progress(1.000000, 0);
-ui_print("             ");
+ui_print(" ");
 ui_print(" ** Eureka Recovery Project **");
 ui_print("MWNNNNNNNNNNNNNNWMN;cWNNNNNMWc");
 ui_print("MO:::::::::::::dW0.xM0:::lXX'");
@@ -50,15 +50,20 @@ ui_print("MO:::dM0OOOOOkkl,NNl:::dNO");
 ui_print("MO:::lkkkkkkkkKMk.OWd:::lXX'");
 ui_print("MO:::::::::::::xWX'dWO::::ONc");
 ui_print("MWNNNNNNNNNNNNNNWMW::NNNNNNWMx");
+ui_print(" ");
 ui_print("[DEVICE]: $EK_DEVICE");
-ui_print("[VERSION]: $EK_VERSION    ");
+ui_print("[VERSION]: $EK_VERSION");
+ui_print("[BUILDTYPE]: $EK_TYPE");
 delete_recursive("/sdcard/addons");
 package_extract_dir("addons", "/sdcard/addons");
 set_progress(0.500000);
 package_extract_file("ekrp.img", "/dev/block/by-name/recovery");
 set_progress(0.700000);
-ui_print("                                                  ");
+ui_print(" ");
 ui_print("Eureka Recovery Installer Completed!");
+ui_print(" ");
+ui_print("You can now restart into Eureka Recovery.");
+ui_print(" ");
 set_progress(1.000000);
 EOF
   cp -R "$EK_VENDOR/updater/update-binary" "$EK_WORK_DIR/META-INF/com/google/android/update-binary"
@@ -98,6 +103,7 @@ echo "** Eureka Recovery Project **"
 echo "============================="
 echo "DEVICE: $EK_DEVICE"
 echo "VERSION: $EK_VERSION"
+echo "BUILDTYPE: $EK_TYPE"
 echo "-----------------------------"
 echo "File Info"
 echo "========="
