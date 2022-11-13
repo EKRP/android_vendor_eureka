@@ -4,6 +4,7 @@ Additional Build functions:
 - breakfast:       Setup the build environment, but only list
                    devices we support.
 - mka:             Builds using SCHED_BATCH on all processors.
+- eureka:	       Start Eureka Recovery Building
 - pushboot:        Push a file from your OUT dir to your phone and
                    reboots it, using absolute path.
 - repopick:        Utility to fetch changes from Gerrit.
@@ -66,6 +67,10 @@ function fixup_common_out_dir() {
 # Make using all available CPUs
 function mka() {
     m "$@"
+}
+
+function eureka () {
+    m recoveryimage "$@"
 }
 
 function pushboot() {
