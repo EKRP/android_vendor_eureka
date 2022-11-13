@@ -18,8 +18,9 @@ EK_WORK_DIR=$(pwd)/zip
 EK_META_DATA_DIR=$(pwd)/zip/META-INF
 RECOVERY_IMG=$(pwd)/out/target/product/$(cut -d'_' -f2-3 <<<$TARGET_PRODUCT)/recovery.img
 EK_DEVICE=$(cut -d'_' -f2-3 <<<$TARGET_PRODUCT)
-EK_VERSION="1.0"
-EK_TYPE="COMMUNITY"
+ENV_FILE=$(pwd)/build/make/core/envsetup.mk
+EK_VERSION=$(grep -o "EKRP_VERSION := .*" $ENV_FILE | sed 's/EKRP_VERSION := //'g)
+EK_TYPE=$(grep -o "EKRP_TYPE := .*" $ENV_FILE | sed 's/EKRP_TYPE := //'g)
 
 ZIP_NAME=EK-$EK_VERSION-$EK_TYPE-$EK_DEVICE-$BUILD_DATE-$BUILD_TIME
 
